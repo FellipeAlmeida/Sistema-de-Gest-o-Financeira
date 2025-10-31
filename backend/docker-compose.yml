@@ -1,0 +1,30 @@
+services:
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+
+    volumes:
+      - .:/app
+
+  db:
+    container_name: database
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
