@@ -12,6 +12,7 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=postgres
 
+    # guarda os arquivos da raiz do projeto no diretório "app" do container (não precisa rebuildar sempre que fizer alteração)
     volumes:
       - .:/app
 
@@ -23,8 +24,11 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+
+    # guarda os dados na pasta "data" do postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+# cria volume externo pra guardar os dados
 volumes:
   postgres_data:
