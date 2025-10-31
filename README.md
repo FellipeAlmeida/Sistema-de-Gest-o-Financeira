@@ -23,5 +23,8 @@ com API, banco dados e integração com front-end. A ideia é ser um projeto sim
 
 ## Como rodar o projeto
 
+### Clonar Projeto
+```git clone https://github.com/FellipeAlmeida/Sistema-de-Gest-o-Financeira```
+
 ### Comando Docker
 ```docker compose up -d --build```
