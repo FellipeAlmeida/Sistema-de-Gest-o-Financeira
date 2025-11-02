@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+from app.database import Base
 from sqlalchemy import Column, Integer, String
 
-class TipoGasto(BaseModel):
+class TipoGasto(Base):
     __tablename__ = "tipo_gasto"
 
     id = Column(Integer, primary_key=True)

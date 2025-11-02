@@ -1,8 +1,8 @@
-from pydantic import BaseModel
+from backend.app.database import Base
 from sqlalchemy import Column, Integer, String, DECIMAL, Boolean, Date, ForeignKey
 from sqlalchemy.orm import relationship
 
-class Gastos(BaseModel):
+class Gastos(Base):
     __tablename__ = "gastos"
 
     id = Column(Integer, primary_key=True)
