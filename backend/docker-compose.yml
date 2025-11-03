@@ -13,7 +13,7 @@ services:
       - DB_PASSWORD=postgres
       - DB=postgres
 
-    # guarda os arquivos da raiz do projeto no diretório "app" do container (não precisa rebuildar sempre que fizer alteração)
+    # guarda os arquivos da raiz do projeto no diretório "app" do container (ele aplica a mudança instantanemente e não precisa rebuildar, ideal para desenvolvimento)
     volumes:
       - .:/app
 

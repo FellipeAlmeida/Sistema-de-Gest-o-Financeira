@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from app.routers import tipo_gasto_router
 from app.database import Base, engine
 
+# cria as tabelas no banco
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Sistema de Gestão Financeira")
