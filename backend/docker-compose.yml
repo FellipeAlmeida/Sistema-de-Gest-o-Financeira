@@ -1,6 +1,6 @@
 services:
   backend:
-    container_name: backend
+    container_name: api
     build:
       context: .
       dockerfile: app/Dockerfile
@@ -12,10 +12,8 @@ services:
       - DB_USER=postgres
       - DB_PASSWORD=postgres
       - DB=postgres
-
-    # guarda os arquivos da raiz do projeto no diretório "app" do container (ele aplica a mudança instantanemente e não precisa rebuildar, ideal para desenvolvimento)
-    volumes:
-      - .:/app
+    networks:
+      - rede_local
 
   db:
     container_name: database
@@ -27,16 +25,23 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES: postgres
 
+    # guarda os dados na pasta "data" do postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - rede_local
+
   adminer:
     container_name: adminer
     image: adminer
     ports:
       - "8080:8080"
 
-    # guarda os dados na pasta "data" do postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
 # cria volume externo pra guardar os dados
 volumes:
   postgres_data:
+
+networks:
+  rede_local:
+    driver: bridge
