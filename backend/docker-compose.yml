@@ -37,6 +37,8 @@ services:
     image: adminer
     ports:
       - "8080:8080"
+    networks:
+      - rede_local
 
 # cria volume externo pra guardar os dados
 volumes:
