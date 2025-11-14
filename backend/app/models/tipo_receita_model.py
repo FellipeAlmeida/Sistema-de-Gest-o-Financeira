@@ -1,4 +1,4 @@
-from backend.app.database import Base
+from app.database import Base
 from sqlalchemy import Column, Integer, String
 
 class TipoReceita(Base):
