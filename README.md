@@ -26,5 +26,18 @@ com API, banco dados e integração com front-end. A ideia é ser um projeto sim
 ### Clonar Projeto
 ```git clone https://github.com/FellipeAlmeida/Sistema-de-Gest-o-Financeira```
 
+### Ativar o ambiente virtual
+```
+# Crie o ambiente virtual
+python -m venv venv
+
+# Ative o ambiente virtual
+source venv/bin/activate
+```
+
+### Entrar no diretório do Back-end
+```cd backend```
+
 ### Comando Docker
 ```docker compose up -d --build```
+
