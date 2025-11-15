@@ -36,8 +36,12 @@ source venv/bin/activate
 ```
 
 ### Entrar no diretório do Back-end
-```cd backend```
+```
+cd backend
+```
 
 ### Comando Docker
-```docker compose up -d --build```
+```
+docker compose up -d --build
+```
 

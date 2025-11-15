@@ -1,15 +1,15 @@
-from backend.app.database import Base
-from sqlalchemy import Column, Integer, String, DECIMAL, Boolean, Date, ForeignKey
+from app.database import Base
+from sqlalchemy import Column, Integer, String, DECIMAL, Boolean, Date, ForeignKey, Text
 from sqlalchemy.orm import relationship
 
-class Gastos(Base):
-    __tablename__ = "gastos"
+class Receita(Base):
+    __tablename__ = "receita"
 
     id = Column(Integer, primary_key=True)
     nome = Column(String(100), nullable=False)
     valor = Column(DECIMAL, nullable=False)
     data = Column(Date)
-    descricao = Column()
+    descricao = Column(Text)
     eh_fixo = Column(Boolean, nullable=False)
 
     tipo_receita_id = Column(Integer, ForeignKey("tipo_receita.id"))

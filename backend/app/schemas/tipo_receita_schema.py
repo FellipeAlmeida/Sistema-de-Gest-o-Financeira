@@ -3,13 +3,7 @@ from pydantic import ConfigDict
 
 # -------------------------- SCHEMA CREATE -------------------------------------
 class TipoReceitaCreate(BaseModel):
-    nome: str = Field(min_length=3, max_length=100, description="Nome do Tipo de Gasto")
-
-
-class TipoReceitaCreateResponse(BaseModel):
-    id: int
-    nome: str
-    message: str
+    nome: str = Field(min_length=3, max_length=100, description="Nome do Tipo de Receita")
 
     model_config = ConfigDict(
         json_schema_extra={
@@ -21,6 +15,10 @@ class TipoReceitaCreateResponse(BaseModel):
         }
     )
 
+class TipoReceitaCreateResponse(BaseModel):
+    id: int
+    nome: str
+    message: str
 
 # # -------------------------- SCHEMA DELETE -------------------------------------
 class TipoReceitaDeleteResponse(BaseModel):
@@ -39,7 +37,7 @@ class TipoReceitaDeleteResponse(BaseModel):
 
 # -------------------------- SCHEMA EDIT -------------------------------------
 class TipoReceitaEdit(BaseModel):
-    nome: str = Field(min_length=3, max_length=100, description='Nome do Tipo Gasto')
+    nome: str = Field(min_length=3, max_length=100, description='Nome do Tipo de Receita')
 
 
 class TipoReceitaEditResponse(BaseModel):

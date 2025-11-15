@@ -64,19 +64,19 @@ def edit_tipo_receita(tipo_receita_id: int, tipo_gasto: TipoReceitaEdit, db: Ses
 
 # -------------------------- LIST -------------------------------------
 
-@router.get("/list/{tipo_gasto_id}", response_model=List[TipoReceitaListResponse])
+@router.get("/list/{tipo_receita_id}", response_model=List[TipoReceitaListResponse])
 def list_tipo_receita(db: Session = Depends(get_db)):
     tipos_gastos = db.query(TipoReceita).all()
     return tipos_gastos
 
 # -------------------------- VIEW -------------------------------------
 
-@router.get("/{tipo_gasto_id}", response_model=TipoReceitaViewResponse)
+@router.get("/{tipo_receita_id}", response_model=TipoReceitaViewResponse)
 def get_tipo_receita(tipo_receita_id: int, db: Session = Depends(get_db)):
         model = db.query(TipoReceita).filter(TipoReceita.id == tipo_receita_id).first()
 
         if not model:
-            raise HTTPException(status_code=404, detail="Tipo de Gasto não encontrado.")
+            raise HTTPException(status_code=404, detail="Tipo de Receita não encontrado.")
 
         return TipoReceitaViewResponse(
             id=model.id,
