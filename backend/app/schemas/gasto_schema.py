@@ -3,76 +3,74 @@ from pydantic import ConfigDict
 from datetime import date
 
 # -------------------------- SCHEMA CREATE -------------------------------------
-class ReceitaCreate(BaseModel):
-    nome: str = Field(min_length=3, max_length=100, description="Nome da Receita")
-    tipo_receita_id: int = Field(description="Identificador do Tipo de Receita")
-    valor: int = Field(description='Valor Recebido')
+class GastoCreate(BaseModel):
+    nome: str = Field(min_length=3, max_length=100, description="Nome do Gasto")
+    tipo_gasto_id: int =  Field(description="Identificador de Tipo de Gasto")
+    valor: int = Field(description='Valor Gasto')
     data: date = Field(description='Data da Transação')
-    descricao: str = Field(description='Descrição da Receita')
-    eh_fixo: bool = Field(description='Define se a Receita é fixa')
+    descricao: str = Field(description='Descrição do Gasto')
+    eh_fixo: bool = Field(description='Define se o Gasto é fixo')
 
     model_config = ConfigDict(
         json_schema_extra={
             'example': {
                 'id': 1,
-                'nome': 'Salário',
-                'tipo_receita_id': 1,
-                'valor': 1500,
+                'nome': 'Transporte',
+                'tipo_gasto_id': 1,
+                'valor': 300,
                 'data': '2024-02-04',
-                'descricao': 'Salário do meu emprego',
+                'descricao': 'Transporte até o meu emprego',
                 'eh_fixo': True,
             }
         }
     )
 
 
-class ReceitaCreateResponse(BaseModel):
+class GastoCreateResponse(BaseModel):
     id: int
     nome: str
     message: str
 
 # # -------------------------- SCHEMA DELETE -------------------------------------
-class ReceitaDeleteResponse(BaseModel):
-    id: int
+class GastoDeleteResponse(BaseModel):
     nome: str
     message: str
 
     model_config = ConfigDict(
         json_schema_extra={
             'example': {
-                'id': 1,
-                'nome': 'Salário',
-                'message': 'Receita excluída com sucesso.'
+                'nome': 'Transporte',
+                'message': 'Gasto excluído com sucesso.'
             }
         }
     )
 
 
 # -------------------------- SCHEMA EDIT -------------------------------------
-class ReceitaEdit(BaseModel):
-    nome: str = Field(min_length=3, max_length=100, description="Nome da Receita")
-    tipo_receita_id: int = Field(description="Identificador do Tipo de Receita")
-    valor: int = Field(description='Valor Recebido')
+class GastoEdit(BaseModel):
+    nome: str = Field(min_length=3, max_length=100, description="Nome do Gasto")
+    tipo_gasto_id: int = Field(description="Identificador de Tipo de Gasto")
+    valor: int = Field(description='Valor Gasto')
     data: date = Field(description='Data da Transação')
-    descricao: str = Field(description='Descrição da Receita')
-    eh_fixo: bool = Field(description='Define se a Receita é fixa')
+    descricao: str = Field(description='Descrição do Gasto')
+    eh_fixo: bool = Field(description='Define se o Gasto é fixo')
 
     model_config = ConfigDict(
         json_schema_extra={
             'example': {
-                'nome': 'Salário',
-                'tipo_receita_id': 1,
-                'valor': 1500,
+                'nome': 'Transporte',
+                'tipo_gasto_id': 1,
+                'valor': 300,
                 'data': '2024-02-04',
-                'descricao': 'Salário do meu emprego',
+                'descricao': 'Transporte até o meu emprego',
                 'eh_fixo': True,
             }
         }
     )
 
-class ReceitaEditResponse(BaseModel):
+class GastoEditResponse(BaseModel):
     nome: str
-    nome: str
+    tipo_gasto_id: int
     valor: int
     data: date
     descricao: str
@@ -81,9 +79,10 @@ class ReceitaEditResponse(BaseModel):
 
 # -------------------------- SCHEMA LIST -------------------------------------
 
-class ReceitaListResponse(BaseModel):
+class GastoListResponse(BaseModel):
     id: int
     nome: str
+    tipo_gasto_id: int
     valor: int
     data: date
     descricao: str
@@ -91,9 +90,10 @@ class ReceitaListResponse(BaseModel):
 
 # -------------------------- SCHEMA VIEW -------------------------------------
 
-class ReceitaViewResponse(BaseModel):
+class GastoViewResponse(BaseModel):
     id: int
     nome: str
+    tipo_gasto_id: int
     valor: int
     data: date
     descricao: str
@@ -103,10 +103,11 @@ class ReceitaViewResponse(BaseModel):
         json_schema_extra={
             'example': {
                 'id': 1,
-                'nome': 'Salário',
-                'valor': 1500,
+                'nome': 'Transporte',
+                'tipo_gasto_id': 1,
+                'valor': 300,
                 'data': '2024-02-04',
-                'descricao': 'Salário do meu emprego',
+                'descricao': 'Transporte até o meu emprego',
                 'eh_fixo': True,
             }
         }

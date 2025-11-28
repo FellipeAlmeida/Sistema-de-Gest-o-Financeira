@@ -10,7 +10,6 @@ class TipoReceitaCreate(BaseModel):
             'example': {
                 'id': 1,
                 'nome': 'Emprego',
-                'message': 'Tipo de Receita criado com sucesso.'
             }
         }
     )

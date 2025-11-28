@@ -2,11 +2,11 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.models.tipo_receita_model import TipoReceita
-from app.schemas.tipo_receita_schema import TipoReceitaCreateResponse, TipoReceitaCreate
+from app.models.receita_model import Receita
+from app.schemas.receita_schema import ReceitaCreateResponse, ReceitaCreate
 
-from app.schemas.tipo_receita_schema import TipoReceitaDeleteResponse, TipoReceitaEditResponse, TipoReceitaEdit, \
-    TipoReceitaListResponse, TipoReceitaViewResponse
+from app.schemas.receita_schema import ReceitaDeleteResponse, ReceitaEditResponse, ReceitaEdit, \
+    ReceitaListResponse, ReceitaViewResponse
 
 from app.models.receita_model import Receita
 from app.schemas.receita_schema import ReceitaCreateResponse, ReceitaDeleteResponse, ReceitaEditResponse, \
@@ -28,7 +28,7 @@ def criar_receita(receita: ReceitaCreate, db: Session = Depends(get_db)):
         db.commit()
         db.refresh(model)
 
-        return TipoReceitaCreateResponse(
+        return ReceitaCreateResponse(
             id=model.id,
             nome=model.nome,
             message="Receita criado com sucesso!")
@@ -46,6 +46,7 @@ def delete_receita(receita_id: int, db: Session = Depends(get_db)):
         db.delete(model)
         db.commit()
         return ReceitaDeleteResponse(
+            id=model.id,
             nome=model.nome,
             message="Receita excluido com sucesso!"
         )
@@ -63,8 +64,13 @@ def edit_receita(receita_id: int, receita: ReceitaEdit, db: Session = Depends(ge
             setattr(model, key, value)
 
         db.commit()
-        return TipoReceitaEditResponse(
+        return ReceitaEditResponse(
             nome=model.nome,
+            tipo_receita_id=model.tipo_receita_id,
+            valor=model.valor,
+            data=model.data,
+            descricao=model.descricao,
+            eh_fixo=model.eh_fixo,
             message="Receita atualizada com sucesso!"
         )
 
@@ -82,7 +88,7 @@ def get_receita(receita_id: int, db: Session = Depends(get_db)):
         model = db.query(Receita).filter(Receita.id == receita_id).first()
 
         if not model:
-            raise HTTPException(status_code=404, detail="Tipo de Gasto não encontrado.")
+            raise HTTPException(status_code=404, detail="Receita de Gasto não encontrado.")
 
         return ReceitaViewResponse(
             id=model.id,
