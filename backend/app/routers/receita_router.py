@@ -1,18 +1,18 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.database import get_db
-from app.models.receita_model import Receita
-from app.schemas.receita_schema import ReceitaCreateResponse, ReceitaCreate
+from database import get_db
+from models.receita_model import Receita
+from schemas.receita_schema import ReceitaCreateResponse, ReceitaCreate
 
-from app.schemas.receita_schema import ReceitaDeleteResponse, ReceitaEditResponse, ReceitaEdit, \
+from schemas.receita_schema import ReceitaDeleteResponse, ReceitaEditResponse, ReceitaEdit, \
     ReceitaListResponse, ReceitaViewResponse
 
-from app.models.receita_model import Receita
-from app.schemas.receita_schema import ReceitaCreateResponse, ReceitaDeleteResponse, ReceitaEditResponse, \
+from models.receita_model import Receita
+from schemas.receita_schema import ReceitaCreateResponse, ReceitaDeleteResponse, ReceitaEditResponse, \
     ReceitaViewResponse, ReceitaListResponse
 
-from app.schemas.receita_schema import ReceitaCreate, ReceitaEdit
+from schemas.receita_schema import ReceitaCreate, ReceitaEdit
 
 router = APIRouter(
     prefix="/receita",

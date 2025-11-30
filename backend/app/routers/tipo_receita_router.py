@@ -1,11 +1,11 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.database import get_db
-from app.models.tipo_receita_model import TipoReceita
-from app.schemas.tipo_receita_schema import TipoReceitaCreateResponse, TipoReceitaCreate
+from database import get_db
+from models.tipo_receita_model import TipoReceita
+from schemas.tipo_receita_schema import TipoReceitaCreateResponse, TipoReceitaCreate
 
-from app.schemas.tipo_receita_schema import TipoReceitaDeleteResponse, TipoReceitaEditResponse, TipoReceitaEdit, \
+from schemas.tipo_receita_schema import TipoReceitaDeleteResponse, TipoReceitaEditResponse, TipoReceitaEdit, \
     TipoReceitaListResponse, TipoReceitaViewResponse
 
 router = APIRouter(

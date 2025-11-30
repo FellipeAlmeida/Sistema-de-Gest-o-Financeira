@@ -2,16 +2,19 @@ services:
   backend:
     container_name: api
     build:
-      context: .
-      dockerfile: app/Dockerfile
+      context: ./backend/app
+      dockerfile: Dockerfile
     ports:
       - "8000:80"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
-      - DB_USER=postgres
-      - DB_PASSWORD=postgres
-      - DB=postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
     networks:
       - rede_local
 
@@ -23,12 +26,14 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES: postgres
-
-    # guarda os dados na pasta "data" do postgres
+      POSTGRES_DB: postgres
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
     networks:
       - rede_local
 
@@ -40,7 +45,16 @@ services:
     networks:
       - rede_local
 
-# cria volume externo pra guardar os dados
+  frontend:
+    container_name: front
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "5500:80"
+    networks:
+      - rede_local
+
 volumes:
   postgres_data:
 

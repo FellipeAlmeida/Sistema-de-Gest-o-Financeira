@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Gestão Financeira</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="main">
+        <header>
+            <div class="textos-header">
+                <div>
+                    <h1 class="titulo-header">Gestão Financeira</h1>
+                    <p class="texto-header">Controle suas finanças de forma inteligente</p>
+                </div>
+                <button class="button-header">+ Nova Transação</button>
+            </div>
+        </header>
+        <hr class="linha1">
+    <section class="home">
+        <div class="cards">
+            <div class="receitas">
+                <div class="icones-receita">
+                    <div class="img-receita">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>
+                    </div>
+
+                    <div>
+                        <p class="mais">+</p>
+                    </div>
+                </div>
+                <p class="texto-receita">Receitas</p>
+                <p class="receita-dinheiro">0,00</p>
+            </div>
+            <div class="despesas">
+                <div class="icones-despesa">
+                   <div class="img-despesa">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trending-down-icon lucide-trending-down"><path d="M16 17h6v-6"/><path d="m22 17-8.5-8.5-5 5L2 7"/></svg>
+                    </div>
+
+                    <div>
+                        <p class="menos">-</p>
+                    </div>
+                </div>
+                <p class="texto-despesa">Despesas</p>
+                <p class="despesa-dinheiro">0,00</p>
+            </div>
+            <div class="saldo">
+                <div class="icones-saldo">
+                    <div class="img-saldo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-wallet-icon lucide-wallet"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg>
+                    </div>
+
+                    <div>
+                        <p class="igual">=</p>
+                    </div>
+                </div>
+                <p class="texto-saldo">Saldo</p>
+                <p class="saldo-dinheiro">0,00</p>
+            </div>
+        </div>
+
+        <div class="charts">
+            <div class="chart1">
+                <div class="texto">
+                    <h3>Despesas por Categoria</h3>
+                </div>
+                <canvas class="graficoDespesas" width="600" height="400"></canvas>
+            </div>
+
+            <div class="chart2">
+                <h3>Receitas vs Despesas</h3>
+                <canvas class="graficoDespesasvsReceitas" width="600" height="400"></canvas>
+            </div>
+        </div>
+    </section>
+    </main>
+    <div class="sectionModal">
+        <div class="overlay">
+            <div class="modal">
+
+                <!-- NAV DAS ABAS -->
+                <div class="tabs">
+                    <button class="tab active" data-tab="transacao">Nova Transação</button>
+                    <button class="tab" data-tab="categorias">Categorias</button>
+                </div>
+
+                <!-- ======== ABA DE TRANSAÇÃO ======== -->
+                <div id="transacao" class="tab-content active">
+
+                    <div class="modal-header">
+                        <h2>Nova Transação</h2>
+                        <button class="close-btn" id="close-transacao">&times;</button>
+                    </div>
+
+                    <div class="transaction-type">
+                        <button id="btn-receita" class="btnReceita">Receita</button>
+                        <button id="btn-despesa" class="btnDespesa">Despesa</button>
+                    </div>
+
+                    <label class="label">Nome</label>
+                    <input type="text" class="input" placeholder="Ex: Conta de luz" id="nome">
+
+                    <label class="label">Categoria</label>
+                    <select class="input" id="categoria-select">
+                        <!-- opções iniciais preenchidas por JS -->
+                    </select>
+
+                    <label class="label">Valor</label>
+                    <input type="text" class="input" placeholder="0,00" id="valor">
+
+                    <label class="label">Data</label>
+                    <div class="input" style="height:48px;display:flex;align-items:center;padding:0 12px;">
+                        <input type="date" id="data" style="background:transparent;border:none;color:white;width:100%;">
+                    </div>
+
+                    <label class="checkbox">
+                        <input type="checkbox" id="eh_fixo">
+                        <span>É fixo?</span>
+                    </label>
+
+                    <label class="label">Descrição</label>
+                    <textarea class="input textarea" placeholder="Digite detalhes..." id="descricao"></textarea>
+
+                    <div class="footer-buttons">
+                        <button class="cancel" id="cancel-transacao">Cancelar</button>
+                        <button class="add" id="add-transacao">Adicionar</button>
+                    </div>
+
+                </div>
+
+                <!-- ======== ABA DE CATEGORIAS ======== -->
+                <div id="categorias" class="tab-content">
+
+                    <div class="modal-header">
+                        <h2>Categorias</h2>
+                        <button class="close-btn" id="close-categorias">&times;</button>
+                    </div>
+
+                    <label class="label">Tipo (Gasto ou Receita)</label>
+                    <select class="input" id="tipo_categoria_escolha">
+                        <option value="gasto">Gasto</option>
+                        <option value="receita">Receita</option>
+                    </select>
+
+                    <label class="label">Nome da Categoria</label>
+                    <input type="text" class="input" placeholder="Ex: Transporte" id="nome_categoria">
+
+                    <div class="footer-buttons">
+                        <button class="cancel" id="cancel-categoria">Cancelar</button>
+                        <button class="add" id="salvar-categoria">Salvar Categoria</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
