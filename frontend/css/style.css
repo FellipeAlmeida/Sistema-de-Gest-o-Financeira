@@ -1,0 +1,462 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e bordas sejam incluídos na largura/altura total do elemento */
+    color: #fff;
+    font-family: sans-serif;
+}
+
+/* header */
+
+body {
+    background-color: #020618;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0F172B;
+    padding: 24px 32px;
+    width: 100%;
+}
+
+.textos-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 66%;
+    align-items: center;
+}
+
+.titulo-header {
+    font-size: 24px;
+    width: 315.64px;
+    height: 36px;
+    color: #f9fafb;
+}
+
+.texto-header {
+    font-size: 16px;
+    margin: 0.25rem 0 0 0;
+    color: #94a3b8;
+}
+
+.button-header {
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 1rem;
+    width: 189.78px;
+    height: 48px;
+    border-radius: 0.5rem;
+    border: none;
+    transition: 0.2s all ease-out;
+}
+
+.button-header:hover {
+    background-color: #112d69;
+    transition: 0.2s all ease-out;
+}
+
+.linha1 {
+    display: flex;
+    width: 100%;
+    height: 1px;
+    background-color: #314158;
+}
+
+/* HOME */
+
+/* receita card */
+.home {
+    display: flex;
+    flex-direction: column;
+    margin: 0 179.500px;
+    justify-content: space-between;
+    padding: 32px;
+    justify-content: center;
+    align-items: center;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    width: 82%;
+    margin-bottom: 32px;
+    justify-content: space-between;
+}
+
+.receitas {
+    display: flex;
+    flex-direction: column;
+    background-color: #1e293b;
+    width: 389.33px;
+    height: 166px;
+    border-radius: 0.75rem;
+    border: 1px solid #334155;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.icones-receita {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.img-receita {
+    background-color: #14532d;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    width: 48px;
+    height: 48px;
+}
+
+.img-receita svg {
+    stroke: #05DF72;
+}
+
+.mais {
+    color: #05DF72;
+}
+
+.receita-dinheiro {
+    color: #05DF72;
+}
+
+.texto-receita {
+    color: #94a3b8;
+}
+
+
+/* despesa card */
+.icones-despesa {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.img-despesa {
+    background-color: #7f1d1d;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    width: 48px;
+    height: 48px;
+}
+
+.menos {
+    color: #ef4444;
+}
+
+.img-despesa svg {
+    stroke: #FF6467;
+}
+
+.despesa-dinheiro {
+    color: #ef4444;
+}
+
+.texto-despesa {
+    color: #94a3b8;
+}
+
+.despesas {
+    display: flex;
+    flex-direction: column;
+    background-color: #1e293b;
+    width: 389.33px;
+    height: 166px;
+    border-radius: 0.75rem;
+    border: 1px solid #334155;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    justify-content: space-between;
+    padding: 30px;
+}
+
+
+/* saldo card */
+.saldo {
+    display: flex;
+    flex-direction: column;
+    background-color: #1e293b;
+    width: 389.33px;
+    height: 166px;
+    border-radius: 0.75rem;
+    border: 1px solid #334155;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.icones-saldo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.img-saldo {
+    background-color: #1e3a8a;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    width: 48px;
+    height: 48px;
+}
+
+.igual {
+    color: #3b82f6;
+}
+
+.img-saldo svg {
+    stroke: #3b82f6;
+}
+
+.saldo-dinheiro {
+    color: #3b82f6;
+}
+
+.texto-saldo {
+    color: #94a3b8;
+}
+
+/* graficos */
+
+.charts {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.chart1 {
+    background-color: #1D293D;
+    width: 62.5vh;
+    height: 351px;
+    padding: 24px;
+    border-radius: 0.75rem;
+    border: 1px solid #334155;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart2 {
+    background-color: #1D293D;
+    width: 62.5vh;
+    height: 351px;
+    padding: 24px;
+    border-radius: 0.75rem;
+    border: 1px solid #334155;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* modalNovaTransacao */
+
+.sectionModal {
+    display: none;
+}
+
+.tipo {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Overlay */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal */
+.modal {
+    width: 470px;
+    background: #1E1E1E;
+    padding: 0 24px 24px;
+    border-radius: 16px;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Tabs */
+.tabs {
+    display: flex;
+    border-bottom: 1px solid #333;
+    margin-bottom: 20px;
+}
+
+.tab {
+    flex: 1;
+    padding: 16px;
+    background: transparent;
+    border: none;
+    font-size: 15px;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.tab.active {
+    color: white;
+    border-bottom: 2px solid #0a6cff;
+}
+
+/* Tab content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Header */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Transaction type */
+.transaction-type {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btnReceita {
+    flex: 1;
+    padding: 14px 0;
+    border-radius: 10px;
+    background: #2b2b2b;
+    color: #ddd;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.btnReceita:hover {
+    background-color: green;
+    transition: all 0.3s ease-in;
+}
+
+.btnDespesa {
+    flex: 1;
+    padding: 14px 0;
+    border-radius: 10px;
+    background: #2b2b2b;
+    color: #ddd;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    transition: all 0.3s ease-in;
+}
+
+.btnDespesa:hover {
+    background-color: rgb(204, 0, 0);
+    transition: all 0.3s ease-in;
+}
+
+/* Inputs */
+.label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 16px;
+    color: #ddd;
+    font-size: 14px;
+}
+
+.input {
+    width: 100%;
+    height: 52px;
+    background: #2c2c2c;
+    border: 1px solid #3a3a3a;
+    border-radius: 10px;
+    padding: 0 14px;
+    color: white;
+    font-size: 15px;
+}
+
+.textarea {
+    height: 80px;
+    padding-top: 10px;
+    resize: none;
+}
+
+/* Checkbox */
+.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+.checkbox input {
+    width: 18px;
+    height: 18px;
+}
+
+/* Footer Buttons */
+.footer-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.cancel {
+    flex: 1;
+    height: 52px;
+    background: #2b2b2b;
+    color: #ddd;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel:hover {
+    background-color: #414141;
+    transition: all 0.3s ease;
+}
+
+.add {
+    flex: 1;
+    height: 52px;
+    background: #004bff;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add:hover {
+    background-color: #003dcc;
+    transition: all 0.3s ease;
+}

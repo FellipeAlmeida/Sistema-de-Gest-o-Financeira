@@ -1,10 +1,10 @@
 from fastapi import FastAPI
-from app.routers import tipo_gasto_router
-from app.database import Base, engine
-from app.routers import tipo_receita_router
-from app.routers import receita_router
+from routers import tipo_gasto_router
+from database import Base, engine
+from routers import tipo_receita_router
+from routers import receita_router
 
-from app.routers import gasto_router
+from routers import gasto_router
 
 # cria as tabelas no banco
 Base.metadata.create_all(bind=engine)

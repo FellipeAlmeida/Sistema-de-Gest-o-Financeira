@@ -1,14 +1,14 @@
 from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from app.models.tipo_gasto_model import TipoGasto
-from app.schemas.tipo_gasto_schema import TipoGastoCreate, TipoGastoCreateResponse
-from app.database import get_db
-from app.schemas.tipo_gasto_schema import TipoGastoDeleteResponse
-from app.schemas.tipo_gasto_schema import TipoGastoEditResponse
-from app.schemas.tipo_gasto_schema import TipoGastoEdit
-from app.schemas.tipo_gasto_schema import TipoGastoViewResponse
-from app.schemas.tipo_gasto_schema import TipoGastoListResponse
+from models.tipo_gasto_model import TipoGasto
+from schemas.tipo_gasto_schema import TipoGastoCreate, TipoGastoCreateResponse
+from database import get_db
+from schemas.tipo_gasto_schema import TipoGastoDeleteResponse
+from schemas.tipo_gasto_schema import TipoGastoEditResponse
+from schemas.tipo_gasto_schema import TipoGastoEdit
+from schemas.tipo_gasto_schema import TipoGastoViewResponse
+from schemas.tipo_gasto_schema import TipoGastoListResponse
 
 router = APIRouter(
     prefix="/tipo_gasto",
