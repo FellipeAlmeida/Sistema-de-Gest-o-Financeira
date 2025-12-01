@@ -56,11 +56,11 @@ for (let i = 0; i < categoriasGasto.length; i++) {
 btnDespesa.addEventListener('click', colocaCategoriaDespesa)
 
 // ABAS
-var tab1 = document.querySelector('[data-tab="transacao"]');
-var tab2 = document.querySelector('[data-tab="categorias"]');
+const tab1 = document.querySelector('[data-tab="transacao"]');
+const tab2 = document.querySelector('[data-tab="categorias"]');
 
-var content1 = document.getElementById("transacao");
-var content2 = document.getElementById("categorias");
+const content1 = document.getElementById("transacao");
+const content2 = document.getElementById("categorias");
 
 function fecharCategorias() {
     tab1.classList.add("active");
@@ -134,3 +134,31 @@ const grafico2 = new Chart(chart2, {
     data: data
 })
 
+/* ---------------- INTEGRAÇÃO ---------------- */
+
+const btnSalvarCategoria = document.querySelector('#salvar-categoria')
+
+async function salvarCategoria(){
+    const tipo = document.querySelector('#tipo_categoria_escolha').value
+    const nome = document.querySelector('#nome_categoria').value
+
+    let url = ""
+
+    if (tipo === 'gasto'){
+        url = 'http://localhost:8000/tipo_gasto'
+    } else {
+        url = 'http://localhost:8000/tipo_receita'
+    }
+
+    const body = {nome: nome}
+
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(body)
+    })
+
+    const data = await response.json()
+    console.log('Criado: ', data)
+}
+btnSalvarCategoria.addEventListener('click', salvarCategoria)
