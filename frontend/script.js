@@ -1,8 +1,8 @@
 const btnNovaTransacao = document.querySelector('.button-header')
 const modal = document.querySelector('.sectionModal')
 const modalCategoria = document.querySelector('#categorias')
-const btnfecharModal = document.querySelector('.close-btn')
-const btnCancelarModal = document.querySelector('.cancel')
+const btnfecharModal = document.querySelectorAll('.close-btn')
+const btnCancelarModal = document.querySelectorAll('.cancel')
 
 function abrirModal() {
     modal.style.display = 'flex'
@@ -12,8 +12,14 @@ btnNovaTransacao.addEventListener('click', abrirModal)
 function fecharModal() {
     modal.style.display = 'none'
 }
-btnfecharModal.addEventListener('click', fecharModal)
-btnCancelarModal.addEventListener('click', fecharModal)
+
+btnfecharModal.forEach(btn => {
+    btn.addEventListener('click', fecharModal)
+})
+
+btnCancelarModal.forEach(btn => {
+    btn.addEventListener('click', fecharModal)
+})
 
 /* ------------------------------------ */
 
@@ -141,6 +147,7 @@ const btnSalvarCategoria = document.querySelector('#salvar-categoria')
 async function salvarCategoria(){
     const tipo = document.querySelector('#tipo_categoria_escolha').value
     const nome = document.querySelector('#nome_categoria').value
+    const mensagem = document.querySelector('.tipo-gasto-added')
 
     let url = ""
 
@@ -160,5 +167,10 @@ async function salvarCategoria(){
 
     const data = await response.json()
     console.log('Criado: ', data)
+    mensagem.style.display = 'flex'
+
+    setTimeout(() => {
+        mensagem.style.display = 'none'
+    }, 2000)
 }
 btnSalvarCategoria.addEventListener('click', salvarCategoria)
