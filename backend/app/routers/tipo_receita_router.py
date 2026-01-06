@@ -64,7 +64,7 @@ def edit_tipo_receita(tipo_receita_id: int, tipo_gasto: TipoReceitaEdit, db: Ses
 
 # -------------------------- LIST -------------------------------------
 
-@router.get("/list/{tipo_receita_id}", response_model=List[TipoReceitaListResponse])
+@router.get("/list", response_model=List[TipoReceitaListResponse])
 def list_tipo_receita(db: Session = Depends(get_db)):
     tipos_gastos = db.query(TipoReceita).all()
     return tipos_gastos

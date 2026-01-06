@@ -66,7 +66,7 @@ def edit_tipo_gasto(tipo_gasto_id: int, tipo_gasto: TipoGastoEdit, db: Session =
 
 # -------------------------- LIST -------------------------------------
 
-@router.get("/list/{tipo_gasto_id}", response_model=List[TipoGastoListResponse])
+@router.get("/list", response_model=List[TipoGastoListResponse])
 def list_tipo_gasto(db: Session = Depends(get_db)):
     tipos_gastos = db.query(TipoGasto).all()
     return tipos_gastos
