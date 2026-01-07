@@ -30,6 +30,7 @@ export async function salvarCategoria(){
     setTimeout(() => {
         mensagem.style.display = 'none'
     }, 2000)
+
 }
 
 /* ---------------- INTEGRAÇÃO SALVAR TRANSAÇÃO ---------------- */
@@ -53,13 +54,26 @@ export async function salvarTransacao(){
         url = 'http://localhost:8000/Gasto'
     }
 
-    const body = {
-        nome: nome,
-        categoria: categoria,
-        valor: valor,
-        dataDaTransacao: dataDaTransacao,
-        eh_fixo: eh_fixo,
-        descricao: descricao
+    let body = {}
+
+    if (tipo === 'receita'){
+        body = {
+            nome: nome,
+            valor: valor,
+            data: dataDaTransacao,
+            eh_fixo: eh_fixo,
+            descricao: descricao,
+            tipo_receita_id: categoria
+        }
+    } else {
+        body = {
+            nome: nome,
+            valor: valor,
+            data: dataDaTransacao,
+            eh_fixo: eh_fixo,
+            descricao: descricao,
+            tipo_gasto_id: categoria
+        }
     }
 
     const response = await fetch(url, {
@@ -78,6 +92,9 @@ export async function salvarTransacao(){
     console.log(tipo)
 }
 
+/* -------------------------------- */
+
+
 /* LIST TIPOS_GASTOS PARA MOSTRAR EM CATEGORIAS */
 export async function buscarCategoriasReceitas(){
     const response = await fetch('http://localhost:8000/tipo_receita/list')
@@ -86,5 +103,12 @@ export async function buscarCategoriasReceitas(){
 
 export async function buscarCategoriasGastos(){
     const response = await fetch('http://localhost:8000/tipo_gasto/list')
+    return response.json()
+}
+
+/* -------------------------------- */
+
+export async function buscarGastoPorIdCat(categoria){
+    const response = await fetch(`http://localhost:8000/Gasto/${categoria}`)
     return response.json()
 }
