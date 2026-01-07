@@ -92,19 +92,7 @@ def list_gasto(db: Session = Depends(get_db)):
 
 # -------------------------- VIEW -------------------------------------
 
-@router.get("/{tipo_gasto_id}", response_model=GastoViewResponse)
+@router.get("/{tipo_gasto_id}", response_model=List[GastoListResponse])
 def get_gasto(tipo_gasto_id: int, db: Session = Depends(get_db)):
-        model = db.query(Gastos).join(TipoGasto).filter(TipoGasto.id == tipo_gasto_id).first()
-
-        if not model:
-            raise HTTPException(status_code=404, detail="Gasto não encontrado.")
-
-        return GastoViewResponse(
-            id=model.id,
-            nome=model.nome,
-            tipo_gasto_id=model.tipo_gasto_id,
-            valor=model.valor,
-            data=model.data,
-            descricao=model.descricao,
-            eh_fixo=model.eh_fixo
-        )
+        model = db.query(Gastos).join(TipoGasto).filter(TipoGasto.id == tipo_gasto_id).all()
+        return model

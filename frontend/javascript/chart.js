@@ -10,64 +10,71 @@ export async function iniciarGraficos() {
   const categorias = await buscarCategoriasGastos();
 
   const valores = await Promise.all(
-    categorias.map(async cat => {
-      const gasto = await buscarGastoPorIdCat(cat.id);
+      // para cada categoria ele busca um gasto com base no id da categoria e soma
+    categorias.map(async (cat) => {
+      const gastos = await buscarGastoPorIdCat(cat.id);
 
-      // garantia de número
-        if (gasto && typeof gasto.valor === "number"){
-            return gasto.valor
-        } else {
-            return 0
+      // soma apenas os gastos das categorias correspondentes
+      const totalCategoria = gastos.reduce((total, gasto) => {
+        if (gasto.tipo_gasto_id === cat.id) { // verifica se o tipo_gasto_id do objeto gasto é igual ao id da categoria
+          return total + Number(gasto.valor || 0);
         }
+        return total;
+      }, 0);
+
+      return totalCategoria;
     })
   );
 
+  // atributos do gráfico
   const labels = categorias.map(cat => cat.nome);
-
   const cores = valores.map(() => gerarCor());
-
   const backgroundColor = cores.map(c => c.bg);
   const borderColor = cores.map(c => c.border);
 
-  const ctxDespesas = document.querySelector(".graficoDespesas").getContext("2d");
+  const canvasDespesas = document.querySelector(".graficoDespesas").getContext('2d')
 
-  if (graficoDespesas) {
+  if (graficoDespesas) { // se ja existir, so atualiza, se não, cria
     graficoDespesas.data.labels = labels;
     graficoDespesas.data.datasets[0].data = valores;
     graficoDespesas.update();
   } else {
-    graficoDespesas = new Chart(ctxDespesas, {
+    graficoDespesas = new Chart(canvasDespesas, {
       type: "pie",
       data: {
         labels,
-        datasets: [
-          {
-            label: "Despesas por categoria",
-            data: valores,
-            backgroundColor,
-            borderColor,
-            borderWidth: 1
-          }
-        ]
+        datasets: [{
+          label: "Despesas por categoria",
+          data: valores,
+          backgroundColor,
+          borderColor,
+          borderWidth: 1
+        }]
       }
     });
   }
 
-  /* --------- RECEITAS VS DESPESAS (EXEMPLO) --------- */
+  /* --------- RECEITAS VS DESPESAS --------- */
 
-  const ctxResumo = document.querySelector(".graficoDespesasvsReceitas").getContext("2d");
+  const canvasResumo = document.querySelector(".graficoDespesasvsReceitas");
+  if (!canvasResumo) return;
 
-  if (!graficoReceitas) {
+  const ctxResumo = canvasResumo.getContext("2d");
+
+  const totalDespesas = valores.reduce((a, b) => a + b, 0);
+
+  if (graficoReceitas) {
+    graficoReceitas.data.datasets[0].data = [3000, totalDespesas];
+    graficoReceitas.update();
+  } else {
     graficoReceitas = new Chart(ctxResumo, {
       type: "bar",
       data: {
         labels: ["Receitas", "Despesas"],
-        datasets: [
-          {
-            label: "Resumo financeiro",
-            data: [3000, valores.reduce((a, b) => a + b, 0)]
-          }
-        ]
+        datasets: [{
+          label: "Resumo financeiro",
+          data: [3000, totalDespesas]
+        }]
       }
     });
   }
