@@ -5,8 +5,6 @@ import {
     salvarTransacao
 } from './integracao.js'
 
-import {data, data2} from "./chart.js";
-
 /* ---------------- LÓGICA PRA ABRIR E FECHAR MODAL -------------------- */
 
 const btnNovaTransacao = document.querySelector('.button-header')
@@ -60,7 +58,7 @@ async function colocaCategoriaReceita() {
     btnReceita.classList.add("active");
     btnDespesa.classList.remove("active");
 
-// limpa e coloca categorias de receita com as que estão no banco de dados
+// limpa e coloca categorias de receita que estão no banco de dados
     categoriaSelect.innerHTML = "";
     const categorias = await buscarCategoriasReceitas()
     preencherSelectCat(categorias)
@@ -112,21 +110,13 @@ tab2.addEventListener('click', abrirCategorias)
 const btnSalvarCategoria = document.querySelector('#salvar-categoria')
 btnSalvarCategoria.addEventListener('click', salvarCategoria)
 
-
 const btnSalvarTransacao = document.querySelector('#add-transacao')
 btnSalvarTransacao.addEventListener('click', salvarTransacao)
 
-/* ---------------- MOSTRA GRAFICOS ---------------- */
+/* ---------------- RODA A FUNÇÃO DE INICIAR GRÁFICOS ASSIM QUE CARREGA A PÁGINA ---------------- */
 
-const chart = document.querySelector('.graficoDespesas').getContext('2d')
-const chart2 = document.querySelector('.graficoDespesasvsReceitas').getContext('2d')
+import { iniciarGraficos } from "./chart.js";
 
-const grafico = new Chart(chart, {
-    type: 'pie',
-    data: data
-})
-
-const grafico2 = new Chart(chart2, {
-    type: 'bar',
-    data: data2
-})
+document.addEventListener("DOMContentLoaded", () => {
+  iniciarGraficos();
+});
