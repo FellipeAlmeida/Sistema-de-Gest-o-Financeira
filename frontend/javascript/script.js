@@ -5,6 +5,7 @@ import {
     salvarTransacao
 } from './integracao.js'
 
+import { pegaValorReceitasESoma, pegaValorDespesasESoma, pegaDiferencaDespesaEReceitas } from './utils.js'
 /* ---------------- LÓGICA PRA ABRIR E FECHAR MODAL -------------------- */
 
 const btnNovaTransacao = document.querySelector('.button-header')
@@ -118,5 +119,41 @@ btnSalvarTransacao.addEventListener('click', salvarTransacao)
 import { iniciarGraficos } from "./chart.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  iniciarGraficos();
+    iniciarGraficos()
 });
+
+/* ---------------- RODA A FUNÇÃO DE ATUALIZAR RECEITAS ASSIM QUE CARREGA A PÁGINA ---------------- */
+
+const receitaDinheiro = document.querySelector('.receita-dinheiro')
+
+async function atualizaReceita(){
+    receitaDinheiro.textContent = `${await pegaValorReceitasESoma()}`
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    atualizaReceita()
+})
+
+/* ---------------- RODA A FUNÇÃO DE ATUALIZAR DESPESAS ASSIM QUE CARREGA A PÁGINA ---------------- */
+
+const despesaDinheiro = document.querySelector('.despesa-dinheiro')
+
+async function atualizaDespesa(){
+    despesaDinheiro.textContent = `${await pegaValorDespesasESoma()}`
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    atualizaDespesa()
+})
+
+/* ---------------- RODA A FUNÇÃO DE ATUALIZAR SALDO ASSIM QUE CARREGA A PÁGINA ---------------- */
+
+const saldoDinheiro = document.querySelector('.saldo-dinheiro')
+
+async function atualizaSaldo(){
+    saldoDinheiro.textContent = `${await pegaDiferencaDespesaEReceitas()}`
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    atualizaSaldo()
+})

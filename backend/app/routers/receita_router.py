@@ -76,7 +76,7 @@ def edit_receita(receita_id: int, receita: ReceitaEdit, db: Session = Depends(ge
 
 # -------------------------- LIST -------------------------------------
 
-@router.get("/list/{receita_id}", response_model=List[ReceitaListResponse])
+@router.get("/list", response_model=List[ReceitaListResponse])
 def list_receita(db: Session = Depends(get_db)):
     receitas = db.query(Receita).all()
     return receitas

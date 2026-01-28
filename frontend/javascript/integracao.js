@@ -112,3 +112,18 @@ export async function buscarGastoPorIdCat(categoria){
     const response = await fetch(`http://localhost:8000/Gasto/${categoria}`)
     return response.json()
 }
+
+/* --------------- LISTAR RECEITAS ----------------- */
+
+export async function buscarReceitas(){
+    const response = await fetch(`http://localhost:8000/receita/list`)
+    return response.json()
+}
+
+/* --------------- LISTAR DESPESAS ----------------- */
+
+export async function buscarGastos(){
+    const response = await fetch(`http://localhost:8000/Gasto/list`)
+    return response.json()
+}
+

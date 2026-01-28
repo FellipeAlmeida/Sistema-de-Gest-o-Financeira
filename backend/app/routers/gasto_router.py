@@ -85,7 +85,7 @@ def edit_gasto(gasto_id: int, gasto: GastoEdit, db: Session = Depends(get_db)):
 
 # -------------------------- LIST -------------------------------------
 
-@router.get("/list/{gasto_id}", response_model=List[GastoListResponse])
+@router.get("/list", response_model=List[GastoListResponse])
 def list_gasto(db: Session = Depends(get_db)):
     gastos = db.query(Gastos).all()
     return gastos

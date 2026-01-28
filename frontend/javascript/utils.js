@@ -1,3 +1,5 @@
+import { buscarReceitas, buscarGastos } from './integracao.js'
+
 /* ---------------- FUNÇÕES UTÉIS ---------------- */
 
 // verifica tipo de transação
@@ -28,3 +30,35 @@ export function gerarCor() {
   }
 }
 
+/* ---------------- PEGA VALOR DE RECEITAS E SOMA ---------------- */
+
+export async function pegaValorReceitasESoma(){
+    let receitas = await buscarReceitas()
+    let receitaValor = 0
+
+    for (let receita of receitas){
+        receitaValor += receita.valor
+    }
+
+    return receitaValor
+}
+
+/* ---------------- PEGA VALOR DE GASTOS E SOMA ---------------- */
+
+export async function pegaValorDespesasESoma(){
+    let gastos = await buscarGastos()
+    let gastoValor = 0
+
+    for (let gasto of gastos){
+        gastoValor += gasto.valor
+    }
+
+    return gastoValor
+}
+
+/* ---------------- PEGA VALOR DE GASTOS E RECEITAS E PEGA A DIFERENÇA ---------------- */
+
+export async function pegaDiferencaDespesaEReceitas(){
+    let diferenca = await pegaValorReceitasESoma() - await pegaValorDespesasESoma()
+    return diferenca
+}
